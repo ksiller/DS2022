@@ -1,3 +1,3 @@
 # Data projects
 
-Project materials for DS2022 are distributed separately (not published in this repository).
+Links with project instructions will be rolled out by week 11.

@@ -2,13 +2,16 @@
 
 There are ten (10) core labs to this course. Others may be provided for practice, but students are encouraged to find their own ways to work with course tools and concepts.
 
-1. [Command-Line](lab1-cli.md)
-2. [Git / GitHub](lab2-git.md)
-3. [Scripting](https://github.com/uvasds-systems/DS2022/blob/main/labs/lab3-scripts.md)
-4. [S3 storage](https://github.com/uvasds-systems/DS2022/blob/main/labs/lab4-s3.md)
-5. [EC2 Compute](https://github.com/uvasds-systems/DS2022/blob/main/labs/lab-ec2.md)
-6. [Docker/FastAPI](https://github.com/uvasds-systems/DS2022/blob/main/labs/lab6-gha.md)
-7. [SQL Databases](https://github.com/uvasds-systems/DS2022/blob/main/labs/lab7-sql.md)
-8. [Working with JSON](https://github.com/uvasds-systems/DS2022/blob/main/labs/lab8-json.md)
-9. [NoSQL MongoDB](https://github.com/nmagee/mongodb-practice/)
-10. [Apache Airflow](https://github.com/uvasds-systems/airflow-practice/)
+Lab 01 - Working with the Command Line
+Lab 02 - Working with Git & GitHub
+Lab 03 - Basic Scripting
+Lab 04 - Working with SQL
+Lab 05 - Working with MongoDB
+Lab 06 - Working with S3 Storage
+Lab 07 - Working with Amazon EC2
+Lab 08 - HPC Jobs & Big Data
+Lab 09 - Working with Containers
+Lab 10 - Creating & Consuming APIs
+
+Lab instructions will be rolled out week-by-week in this folder.
+

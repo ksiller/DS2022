@@ -1,3 +1,5 @@
 # Class materials
 
-In-class materials for DS2022 are distributed separately (not published in this repository).
+In this folder you can find live coding examples and demos presented in class.
+
+
