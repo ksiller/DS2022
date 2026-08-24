@@ -9,6 +9,8 @@ images/labs/
 
 people/nem2p/
 
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
