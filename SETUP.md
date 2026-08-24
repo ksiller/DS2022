@@ -1,10 +1,8 @@
 # Getting Started
 
-Complete the following steps before the first class.
+Complete the following steps before the end of week 1.
 
 **Note:** Some tasks may cause errors or require additional settings or configuration. This is to be expected. Google, StackOverflow, and your classmates can be helpful, as instructional staff do not have the capacity for desktop support. You may already have some of these completed from previous classes.
-
-- [ ] Take the [**Student Survey**](https://virginia.az1.qualtrics.com/jfe/form/SV_799Osj0KfAPPJ7E).
 
 ### Services
 
@@ -18,20 +16,15 @@ Complete the following steps before the first class.
 
 - [ ] <img src="https://icons.iconarchive.com/icons/martz90/circle/128/apple-2-icon.png" width="24" height="24"> MacOS users: Find the **Terminal** app (in Applications --> Utilities). You may want to add it to your dock.
 - [ ] <img src="https://icons.iconarchive.com/icons/martz90/circle/128/windows-8-icon.png" width="24" height="24"> Windows users: [**Install and set up WSL**](https://learn.microsoft.com/en-us/windows/wsl/install), the Windows Subsystem for Linux. The default WSL installation will create an Ubuntu environment for you. The username and password you create within WSL does not have to match your Windows username/password. Be sure to complete the WSL installation before you install VS Code.
-- [ ] Install [**Docker Desktop**](https://www.docker.com/get-started/) on your laptop and sign in using the Docker account you created above.
+- [ ] Install [**Rancher Desktop**](https://docs.rancherdesktop.io/getting-started/installation/) on your laptop and sign in using the Docker account you created above. We will use Moby (dockerd) as Container runtime. More to come; just complete the installation for now.
 - [ ] Install the [**`git` command line**](https://git-scm.com/downloads) for your OS. Windows users may want to install it both in Windows and within WSL. 
 - [ ] Install [**`jq`**](https://jqlang.github.io/jq/) for your OS.
 - [ ] Install [**VS Code**](https://code.visualstudio.com/), the free IDE (integrated development environment) in your primary OS. (That is, Windows users install VS Code on the Windows side, not in WSL.) The links below will open each plugin page within VS Code; then click on "Install" from that page.
-    - [ ] Install the [**Remote Development**](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) plugin from Microsoft. This bundle contains four plugins.
-    - [ ] Install the [**GitHub Copilot**](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) plugin from GitHub.
-    - [ ] Install the [**GitHub Codespaces**](https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces) plugin from GitHub.
-    - [ ] Install the [**Python**](https://marketplace.visualstudio.com/items?itemName=ms-python.python) plugin from Microsoft.
-    - [ ] Install the [**YAML**](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) plugin from Red Hat.
-- [ ] Alternatively, install the [**UVA Data Science Extension Pack**](https://marketplace.visualstudio.com/items?itemName=uva-school-of-data-science.sds-vscode) plugin from the SDS. This will install all the above extensions plus a few extras.
+- [ ] Install the [**UVA Data Science Extension Pack**](https://marketplace.visualstudio.com/items?itemName=uva-school-of-data-science.sds-vscode) plugin from the SDS. This will install all the above extensions plus a few extras.
 
 ### Python
 
-- [ ] Find Python3 on your laptop. Version 3.9 or higher is preferable (3.12 is the current release, 3.7 has already reached its end of life and 3.8 is close to that). You can see what version you have installed from your terminal:
+- [ ] Find Python3 on your laptop. Version 3.9 or higher is preferable (3.14 is the latest stable release, 3.7 has already reached its end of life and 3.8 is close to that). You can see what version you have installed from your terminal:
 
         $ python3 -V
 
