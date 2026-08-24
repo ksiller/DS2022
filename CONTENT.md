@@ -1,4 +1,4 @@
-# Course Content
+# Course Schedule
 
 - Week 01 - Intro: Data Engineering Basics / Orientation
 - Week 02 - Environments: The Linux command line and filesystem
@@ -14,5 +14,6 @@
 - Week 12 - Data Pipelines: Connecting Services & Data with APIs
 - Week 13 - Data Pipelines: Event-Driven & Serverless Workflows
 - Week 14 - Data Pipelines: Automating & Scheduling Workflows
-- Week 15 - Course Wrap-Up
--         - Final Exam
+- Week 15 - Final Exam & Course Wrap-Up
+
+Data Projects start in week 11.
