@@ -1,6 +1,4 @@
-# Karste Siller
-
-![An image of me](https://avatars.githubusercontent.com/u/699798?v=4)
+# Karsten Siller
 
 - Hometown: Hagen, Germany
 - Hobbies: trail running, reading
