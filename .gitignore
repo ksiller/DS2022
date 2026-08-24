@@ -1,3 +1,14 @@
+# Course materials: folder shells on GitHub, contents stay local
+class/*
+!class/README.md
+labs/*
+!labs/README.md
+projects/*
+!projects/README.md
+images/labs/
+
+people/nem2p/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
