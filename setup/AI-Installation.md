@@ -27,6 +27,8 @@ From then on, open Ubuntu with: press **`Win`**, type `Ubuntu`, press **Enter** 
 curl https://cursor.com/install -fsS | bash
 ```
 
+Once the cursor cli completes running. It will output a command that you need to run add cursor to your path. **RUN THIS COMMAND**. 
+
 **2. Start the agent and point it at the course setup instructions:**
 
 ```bash
