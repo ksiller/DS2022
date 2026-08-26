@@ -1,7 +1,57 @@
+# Setting Up Your Laptop with the Cursor CLI
+
+## Quick start (two commands)
+
+### Open a terminal
+
+**Mac:** press **`Cmd + Space`**, type `Terminal`, press **Return**.
+
+**Windows:** the course uses **WSL (Ubuntu)**. If you have never installed it, do this one-time step first:
+
+1. Press **`Win + X`**, then press **`A`** (opens *Terminal (Admin)* / *PowerShell (Admin)*). Click **Yes** if Windows asks for permission.
+2. Run:
+
+   ```powershell
+   wsl --install
+   ```
+
+3. **Restart your computer.** After the restart, an *Ubuntu* window opens and asks you to create a Linux username and password (they do not have to match your Windows login). Nothing appears while you type the password — that is normal.
+
+From then on, open Ubuntu with: press **`Win`**, type `Ubuntu`, press **Enter** (or press **`Win + R`**, type `wsl`, press **Enter**). **Run the two commands below inside that Ubuntu window, not in PowerShell.**
+
+### Run the two commands
+
+**1. Install the Cursor CLI**, then **close and reopen the terminal**:
+
+```bash
+curl https://cursor.com/install -fsS | bash
+```
+
+**2. Start the agent and point it at the course setup instructions:**
+
+```bash
+agent --force "Read https://raw.githubusercontent.com/ksiller/DS2022/refs/heads/main/setup/GENERAL.md and walk me through completing every step on this laptop. Install whatever you can without asking me for approval. Only stop when I personally have to do something: create or sign in to an account, run a graphical installer, enable 2FA, or type a password. When you stop, tell me exactly what to do, then continue when I type done. Finish with a checklist of what is done and what I still need to do myself."
+```
+
+The first time, the agent asks you to sign in to Cursor — a browser window opens; sign in with your free *Hobby* account and return to the terminal. (If no browser opens, run `agent login` first, then repeat command 2.)
+
+That is it. Follow the agent's instructions until it prints the final checklist. The rest of this page explains each step in more detail, with screenshots, and has a troubleshooting section if something goes wrong.
+
+---
+
+## Detailed walkthrough
+
+This guide walks you through installing the **Cursor CLI** (a coding agent that runs in your terminal) and then using it to work through the course [Getting Started checklist](GENERAL.md). Instead of installing every tool by hand, you will let the agent check what is already on your machine, install the missing command-line tools, and confirm everything works.
+
+**Complete this before the end of week 1.** Budget about 45–60 minutes. Visit office hours if you get stuck.
+
+> **Note:** Some steps may throw errors or need extra configuration. That is normal. Google, Stack Overflow, and your classmates are good resources; the instructional staff cannot provide desktop support.
+
 ---
 
 ## Contents
 
+0. [Quick start (two commands)](#quick-start-two-commands)
 1. [Before you start](#1-before-you-start)
 2. [Install the Cursor CLI](#2-install-the-cursor-cli)
    - [macOS](#macos)
@@ -25,6 +75,14 @@ You need three things before installing the CLI:
 | ☐ | **macOS:** the **Terminal** app (Applications → Utilities). Consider adding it to your Dock. | You will type all commands here. |
 | ☐ | **Windows:** **WSL (Windows Subsystem for Linux)** installed — see [Microsoft's WSL install guide](https://learn.microsoft.com/en-us/windows/wsl/install). The default install gives you Ubuntu. | The course develops inside WSL, so the CLI should live there too. **Finish WSL before continuing.** |
 
+**Windows users — what WSL setup looks like.** In PowerShell you run `wsl --install`, restart, and then Ubuntu opens and asks you to create a Linux username and password (they do not need to match your Windows login):
+
+![Running wsl --install in Windows PowerShell](https://learn.microsoft.com/en-us/windows/wsl/media/wsl-install.png)
+
+![Ubuntu first run asking for a new UNIX username](https://learn.microsoft.com/en-us/windows/wsl/media/ubuntuinstall.png)
+
+*Screenshots: Microsoft Learn, [Set up a WSL development environment](https://learn.microsoft.com/en-us/windows/wsl/setup/environment).*
+
 If you already have the Cursor IDE installed, great — the CLI is a separate, small install and does not change the IDE.
 
 ---
@@ -35,7 +93,11 @@ Pick **one** of the sections below for your operating system.
 
 ### macOS
 
-1. Open **Terminal** (press `Cmd + Space`, type `Terminal`, press Return).
+1. Open **Terminal** (press `Cmd + Space`, type `Terminal`, press Return). A Terminal window looks like this — the line ending in `%` is where you type:
+
+   ![The macOS Terminal window with a shell prompt](https://help.apple.com/assets/67DB80CC8ED20D93270BDBE5/67DB80CD888B30021203ACDC/en_US/08b5aaad211dbab5656113d16eb5301a.png)
+
+   *Screenshot: Apple, [Terminal User Guide](https://support.apple.com/guide/terminal/get-started-pht23b129fed/mac).*
 
 2. Paste this command and press Return:
 
@@ -44,8 +106,6 @@ Pick **one** of the sections below for your operating system.
    ```
 
    The installer downloads the CLI into `~/.local/bin` and adds that folder to your PATH. It takes about 10–30 seconds.
-
-   ![macOS: running the Cursor CLI installer in Terminal](images/cursor-cli-mac-install.png)
 
 3. **Close Terminal completely and open it again** (`Cmd + Q`, then relaunch). This is required so your shell picks up the new PATH.
 
@@ -57,17 +117,17 @@ Pick **one** of the sections below for your operating system.
 
    You should see a version number such as `2026.08.xx-xxxxxxx`.
 
-   ![macOS: agent --version prints a version number](images/cursor-cli-mac-version.png)
-
    If you see `command not found: agent`, jump to [Troubleshooting → "agent: command not found"](#agent-command-not-found).
 
 ### Windows (WSL — recommended)
 
 Install the CLI **inside WSL (Ubuntu)**, not in PowerShell. This matches where you will do all your course work.
 
-1. Open your Ubuntu terminal: press the **Windows key**, type `Ubuntu`, and press Enter. (You can also open **Windows Terminal** and choose the *Ubuntu* tab from the dropdown.)
+1. Open your Ubuntu terminal: press the **Windows key**, type `Ubuntu`, and press Enter. (You can also open **Windows Terminal** and choose the *Ubuntu* tab from the dropdown, as in the screenshot below — the pane with the `$` prompt is Ubuntu.)
 
-   ![Windows: opening Ubuntu (WSL) from the Start menu](images/cursor-cli-win-open-ubuntu.png)
+   ![Windows Terminal with an Ubuntu tab open](https://learn.microsoft.com/en-us/windows/wsl/media/terminal.png)
+
+   *Screenshot: Microsoft Learn, [Set up a WSL development environment](https://learn.microsoft.com/en-us/windows/wsl/setup/environment).*
 
 2. Make sure `curl` is available (it usually is; this is harmless if it already exists):
 
@@ -83,8 +143,6 @@ Install the CLI **inside WSL (Ubuntu)**, not in PowerShell. This matches where y
    curl https://cursor.com/install -fsS | bash
    ```
 
-   ![Windows/WSL: running the Cursor CLI installer in Ubuntu](images/cursor-cli-wsl-install.png)
-
 4. **Close the Ubuntu window and open it again** so your PATH updates.
 
 5. Confirm it worked:
@@ -92,8 +150,6 @@ Install the CLI **inside WSL (Ubuntu)**, not in PowerShell. This matches where y
    ```bash
    agent --version
    ```
-
-   ![Windows/WSL: agent --version prints a version number](images/cursor-cli-wsl-version.png)
 
    If you see `agent: command not found`, jump to [Troubleshooting](#agent-command-not-found).
 
@@ -103,19 +159,16 @@ Only use this if you cannot get WSL working. You will need to install the Window
 
 1. Press the **Windows key**, type `PowerShell`, and open **Windows PowerShell**.
 
+   ![Windows Start menu search showing PowerShell](https://learn.microsoft.com/en-us/powershell/docs-conceptual/install/media/install-powershell-on-windows/powershell-start-menu.png)
+
+   *Screenshot: Microsoft Learn, [Installing PowerShell on Windows](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows).*
+
 2. Paste and press Enter:
 
    ```powershell
    irm 'https://cursor.com/install?win32=true' | iex
    ```
 
-   ![Windows: running the Cursor CLI installer in PowerShell](images/cursor-cli-win-ps-install.png)
-
-3. **Close PowerShell and open it again.**
-
-4. Confirm:
-
-   ```powershell
 3. **Close PowerShell and open it again.**
 
 4. Confirm:
@@ -136,9 +189,7 @@ The CLI needs to be connected to your Cursor account.
    agent login
    ```
 
-2. Your web browser opens to a Cursor sign-in page. Sign in with the same account you created in [Step 1](#1-before-you-start) and click **Authorize** (or the equiva
-
-   ![Browser: authorizing the Cursor CLI](images/cursor-cli-login-browser.png)
+2. Your web browser opens to a Cursor sign-in page. Sign in with the same account you created in [Step 1](#1-before-you-start) and click **Authorize** (or the equivalent button) when asked.
 
    > **WSL users:** the browser should open on the Windows side automatically. If it does not, the terminal prints a URL — copy it into any browser on your laptop.
 
@@ -148,13 +199,13 @@ The CLI needs to be connected to your Cursor account.
    agent status
    ```
 
-   ![Terminal: agent status shows your account email](images/cursor-cli-status.png)
+   It prints the email address of the account you are logged in with.
 
 ---
 
 ## 4. Run the setup with the agent
 
-Now you will hand the [Getting Started checklist](https://raw.githubusercontent.com/ksiller/DS2022/refs/heads/main/setup/GENERAL.md) to the agent and let it help you through it.
+Now you will hand the [Getting Started checklist](GENERAL.md) to the agent and let it help you through it.
 
 **What the agent can and cannot do:**
 
@@ -200,9 +251,11 @@ EOF
 
 Deny rules always win over allow rules, so these commands are blocked even with `--force`.
 
-The first time you run the agent in a folder, it may ask whether you trust this workspace — answer **yes**. You will then see a prompt where you can type instructions.
+The first time you run the agent in a folder, it may ask whether you trust this workspace — answer **yes**. You will then see a prompt where you can type instructions. It looks like this (the folder name and branch will be yours):
 
-![Terminal: the Cursor CLI interactive prompt](images/cursor-cli-agent-start.png)
+![The Cursor Agent CLI prompt in a terminal window](https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/cli-og.png)
+
+*Screenshot: Cursor, [Cursor CLI announcement](https://cursor.com/blog/cli).*
 
 ### 4.3 Give the agent the checklist
 
@@ -236,12 +289,22 @@ Explain each step briefly in plain language — I am new to the terminal.
 
 ### 4.4 What to expect while it runs
 
-Because you started with `--force`, the agent installs tools on its own and narrates what it is doing. You will only be interrupted for things the agent cannot do for you:
+Because you started with `--force`, the agent installs tools on its own and narrates what it is doing — each step it takes shows up as a line in the terminal, like this:
+
+![The Cursor Agent CLI showing completed steps and a prompt](https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/features/cli-og-image-2.png)
+
+*Screenshot: Cursor, [cursor.com/cli](https://cursor.com/cli).*
+
+You will only be interrupted for things the agent cannot do for you:
 
 - **Password prompts.** On WSL, `sudo` asks for your **WSL password**. On Mac, installing Homebrew asks for your **Mac login password**. Nothing appears as you type — press Enter when done.
 - **"Go do this, then type done."** For accounts, 2FA, and graphical installers the agent stops and tells you what to do in your browser or installer. Do it, then type `done` and press Enter.
 
-![Terminal: the agent installing tools and pausing for a manual step](images/cursor-cli-autorun.png)
+> **Mac users:** if Homebrew is missing, the agent will install it. That is the standard macOS package manager and it is what the checklist recommends. Homebrew's own installer looks like this and will ask for your password once:
+>
+> ![Homebrew install running in Terminal](https://brew.sh/assets/img/brew-install.gif)
+>
+> *Animation: [brew.sh](https://brew.sh).*
 
 > **Watch the output.** Auto-run mode is convenient, but you are still responsible for your laptop. If the agent does something surprising, press `Ctrl + C` to stop it and ask it to explain.
 
@@ -250,11 +313,21 @@ Because you started with `--force`, the agent installs tools on its own and narr
 When the agent prints its final checklist, do the **MANUAL** items in your browser or with the graphical installers. As of this writing those are:
 
 - [ ] GitHub account → [enable 2FA](https://github.com/settings/security) → [GitHub Education](https://education.github.com/discount_requests/application)
+
+  ![GitHub two-factor authentication setup screen](https://docs.github.com/assets/cb-23826/images/help/2fa/ghes-3.8-and-higher-2fa-wizard-app-click-code.png)
+
+  *Screenshot: [GitHub Docs](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).*
+
 - [ ] [AWS Free Tier](https://aws.amazon.com/free/) account
 - [ ] [Docker account](https://app.docker.com/signup)
-- [ ] [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation/) (choose **dockerd (moby)** as the container runtime, sign in with your Docker a
+- [ ] [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation/) — after installing, open **Preferences → Container Engine** and choose **dockerd (moby)**, then sign in with your Docker account.
+
+  ![Rancher Desktop preferences with dockerd (moby) selected on macOS](https://suse-rancher-media.s3.amazonaws.com/desktop/v1.24/preferences/macOS_containerEngine_tabGeneral.png)
+
+  *Screenshot: [Rancher Desktop docs](https://docs.rancherdesktop.io/ui/preferences/container-engine/general/). The Windows version has an extra **WSL** tab on the left.*
+
 - [ ] [Cursor IDE](https://cursor.com) on your **primary OS** (Windows users: the Windows side, not WSL)
-- [ ] The **UVA Data Science Extension Pack** inside Cursor — follow the VSIX steps in [GENERAL.md](https://raw.githubusercontent.com/ksiller/DS2022/refs/heads/main/setup/GENERAL.md)
+- [ ] The **UVA Data Science Extension Pack** inside Cursor — follow the VSIX steps in [GENERAL.md](GENERAL.md)
 
 You can come back to the agent any time (`agent --force`) and ask, for example, *"I just installed Rancher Desktop — check that docker works."*
 
@@ -286,8 +359,6 @@ Python 3.12.x
 $ docker --version
 Docker version 2x.x.x, build xxxxxxx
 ```
-
-![Terminal: all verification commands printing versions](images/cursor-cli-verify.png)
 
 If anything errors, start the agent again (`agent --force`) and paste the exact error message — ask it to diagnose.
 
@@ -333,7 +404,7 @@ The terminal prints a URL. Copy it and paste it into Chrome/Safari/Edge on your 
 
 ### The agent says it cannot fetch the checklist URL
 
-Paste the checklist text directly instead: open <https://raw.githubusercontent.com/ksiller/DS2022/refs/heads/main/setup/GENERAL.md> in your browser, select all, copyent after your instructions.
+Paste the checklist text directly instead: open <https://raw.githubusercontent.com/ksiller/DS2022/refs/heads/main/setup/GENERAL.md> in your browser, select all, copy, and paste it into the agent after your instructions.
 
 ### Windows: `wsl` is not installed / Ubuntu does not open
 
@@ -341,7 +412,11 @@ Finish the [WSL installation](https://learn.microsoft.com/en-us/windows/wsl/inst
 
 ### `docker: command not found` after installing Rancher Desktop
 
-Make sure Rancher Desktop is **running** (it lives in your menu bar / system tray) and that the container runtime is set to **dockerd (moby)** in *Preferences → Container Engine*. On Windows, also enable WSL integration for your Ubuntu distro in *Preferences → WSL*. Then open a **new** terminal.
+Make sure Rancher Desktop is **running** (it lives in your menu bar / system tray) and that the container runtime is set to **dockerd (moby)** in *Preferences → Container Engine*. On Windows, also enable WSL integration for your Ubuntu distro in *Preferences → WSL* (see below). Then open a **new** terminal.
+
+![Rancher Desktop preferences on Windows showing the WSL tab and dockerd (moby)](https://suse-rancher-media.s3.amazonaws.com/desktop/v1.24/preferences/Windows_containerEngine_tabGeneral.png)
+
+*Screenshot: [Rancher Desktop docs](https://docs.rancherdesktop.io/ui/preferences/container-engine/general/).*
 
 ### Updating the CLI later
 
@@ -370,31 +445,20 @@ agent update
 
 Official docs: <https://cursor.com/docs/cli>
 
+---
+
+*Screenshots in this guide are hot-linked from the official documentation of Apple, Microsoft, Cursor, SUSE (Rancher Desktop), GitHub, and Homebrew, and are credited under each image. Their appearance may differ slightly from your screen.*
+
 <!--
-================================================================================
-SCREENSHOT CAPTURE CHECKLIST (for instructional staff — delete before publishing
-or leave; HTML comments do not render on GitHub)
-
-Place PNGs in setup/images/ with these exact filenames. Crop to the window,
-~1400px wide, and blur any email address / token you do not want visible.
-
-  cursor-cli-mac-install.png       Terminal.app, the curl|bash command and the
-                                   installer's success output.
-  cursor-cli-mac-version.png       Terminal.app, `agent --version` output.
-  cursor-cli-win-open-ubuntu.png   Windows Start menu with "Ubuntu" typed in.
-  cursor-cli-wsl-install.png       Ubuntu/Windows Terminal, curl|bash + output.
-  cursor-cli-wsl-version.png       Ubuntu, `agent --version` output.
-  cursor-cli-win-ps-install.png    PowerShell, the irm|iex command + output.
-  cursor-cli-login-browser.png     Browser page from `agent login` showing the
-                                   Authorize button.
-  cursor-cli-status.png            `agent status` showing "Logged in as ..."
-                                   (blur the email).
-  cursor-cli-agent-start.png       The interactive `agent` prompt, right after
-                                   launch, before any typing.
-  cursor-cli-autorun.png           `agent --force` session: the agent running
-                                   `sudo apt install -y jq` (or `brew install jq`)
-                                   automatically, then pausing with a "go create
-                                   your GitHub account ... type done" message.
-  cursor-cli-verify.png            One terminal showing git/jq/python3/docker
-                                   version output.
-================================================================================
+Staff note — image sources (all verified live 2026-08-26). If one breaks,
+re-scrape the linked page for the current asset URL:
+  Apple Terminal window ........ https://support.apple.com/guide/terminal/get-started-pht23b129fed/mac
+  WSL install / Ubuntu / Terminal https://learn.microsoft.com/en-us/windows/wsl/setup/environment
+  PowerShell Start menu ........ https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows
+  Cursor CLI prompt ............ https://cursor.com/blog/cli   (OG image)
+  Cursor CLI in progress ....... https://cursor.com/cli        (features/cli-og-image-2.png)
+  Homebrew install gif ......... https://brew.sh
+  GitHub 2FA ................... https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication
+  Rancher Desktop prefs ........ https://docs.rancherdesktop.io/ui/preferences/container-engine/general/
+The Apple asset URL contains a version hash and is the most likely to rotate.
+-->
