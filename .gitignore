@@ -1,5 +1,7 @@
 # Course materials: folder shells on GitHub, contents stay local
-class/*
+class/02*
+class/bundles/
+class/s3-storage/
 !class/README.md
 labs/*
 !labs/README.md
