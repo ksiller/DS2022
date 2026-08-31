@@ -18,6 +18,6 @@ Please read and complete all [setup instructions](setup/GENERAL.md) by the end o
 
 ## Content
 
-- [Weekly modules](CONTENT.md)
-- [Class materials](class/)
-- [In-class demos](demos/)
+- [Schedule](CONTENT.md): Overview of weekly topics
+- [Class materials](class/): Hands-on exercises
+- [In-class demos](demos/): Documentation of instructor-led live coding demos
