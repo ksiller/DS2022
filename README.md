@@ -18,4 +18,6 @@ Please read and complete all [setup instructions](setup/GENERAL.md) by the end o
 
 ## Content
 
-[Weekly modules](CONTENT.md)
+- [Weekly modules](CONTENT.md)
+- [Class materials](class/)
+- [In-class demos](demos/)
