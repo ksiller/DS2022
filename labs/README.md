@@ -13,5 +13,5 @@ There are ten (10) core labs to this course. Others may be provided for practice
 - Lab 09 - Working with Containers
 - Lab 10 - Creating & Consuming APIs
 
-Lab instructions will be rolled out week-by-week in this folder.
+Lab instructions will be rolled out week-by-week in Canvas.
 

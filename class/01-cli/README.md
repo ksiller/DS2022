@@ -229,7 +229,7 @@ From within your course directory (`~/ds2022-fall-26`), create a new directory u
 mkdir mynewdir
 ```
 
-List the contents of your home directory and you should see the new subdirectory appear:
+List the contents and you should see the new subdirectory:
 
 ```bash
 ls -al
