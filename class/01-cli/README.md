@@ -1,14 +1,16 @@
 # Working with the Command Line
 
-This module introduces the Linux command line. During class, we walk through a live demo; those commands are collected in [`demos/01-cli/README.md`](../../demos/01-cli/README.md) for reference.
+This module introduces the Linux command line. During class, we walk through a live demo; those commands are collected in `[demos/01-cli/README.md](../../demos/01-cli/README.md)` for reference.
 
 1. Work through the sections below for hands-on practice on your own machine.
 2. When you finish, complete **Lab 01** in Canvas for your graded assignment (link and due date are posted there).
 
 ## Open a terminal
 
-- **macOS:** Press Command-Space, type `Terminal`, and press Return. You may want to add Terminal to your Dock.
-- **Windows:** Start WSL and open your Linux shell.
+- **macOS:** Press Command-Space, type `Terminal`, and press Return. You may want to add Terminal to your Dock. (or open Terminal in Cursor)
+- **Windows:** Start WSL and open your Linux shell. (or open Terminal in Cursor) **Don't run chmod commands outside your /home directory.**
+- **Alternative:** If you're having issues with your local terminal, you can always fall back and use the UVA HPC system for this practice. Go to [https://ood.hpc.virginia.edu/](https://ood.hpc.virginia.edu/), login through Netbadge, go to `Clusters` > `HPC Shell Access`.
+
 
 ## Set up your course directory
 
@@ -91,6 +93,8 @@ The `-al` flags (options) do not have to be in any particular order, so this wor
 ```bash
 ls -la
 ```
+
+
 
 ## Work with files in your course directory
 
@@ -212,6 +216,7 @@ cd "$(whoami)"              # relative path using your username
 The first two options work from anywhere. The third uses a relative path from a parent directory such as `/home` (Linux/WSL) or `/Users` (macOS).
 
 To go back to the last directory you can run `cd -`. Try this:
+
 ```bash
 cd ..
 pwd
@@ -219,7 +224,11 @@ cd -
 pwd
 ```
 
+
+
 ## Working with Folders (Directories)
+
+
 
 ### Create a subdirectory
 
@@ -238,22 +247,26 @@ ls -al
 Can you already guess the full path of the new subdirectory you created? If not, `cd` into
 it and then issue the `pwd` command to find out.
 
-### Copy a file or directory 
+### Copy a file or directory
 
 If you have a file or folder you would like to copy, use the `cp` command like this:
 
 For a file:
+
 ```bash
 cp file1 file2
 ```
 
 For a directory we need the `-r` flag to indicate a recursive copy. First, create a directory to copy:
+
 ```bash
 mkdir dir1
 cp -r dir1 dir2
 ```
 
 > **Note:** It is a good practice to leave the trailing `/` off of directory names.
+
+
 
 ### Renaming, Moving, Deleting Files and Directories
 
@@ -270,6 +283,7 @@ rm -r another-newdir
 ```
 
 You can delete multiple objects with a filter in your command. For instance, run this command in a directory:
+
 ```bash
 touch z{81..90}.txt
 ```
@@ -293,7 +307,7 @@ rm *.txt
 ```
 
 Create a deeper nested directory structures in one swoop. Try this:
- 
+
 ```bash
 mkdir -p timestamps/2026-01-01
 ```
@@ -341,6 +355,7 @@ So if I just created `hello.txt` in `nano` earlier, I could rename it by moving 
 ```bash
 mv hello.txt hello
 ```
+
 You can always move a file to a completely different location by using a full path reference. That path may be absolute (with leading `/`) or relative (no leading `/`, relative to current location).
 
 ```bash
@@ -349,29 +364,31 @@ ls
 ```
 
 Now check `timestamps/2026-01-01`:
+
 ```bash
 ls timestamps/2026-01-01
 ```
+
 Do you see file1?
 
-**Understanding `mv` behavior:**
+**Understanding** `mv` **behavior:**
 
 The `mv` command behaves differently depending on what the destination is:
 
 1. **If the destination is an existing directory:** The file is moved into that directory, keeping its original name. If a file with the same name already exists in that directory, it will be overwritten.
-   ```bash
+  ```bash
    mv file.txt existing_dir/    # file.txt is moved into existing_dir/
-   ```
-
+  ```
 2. **If the destination is a path to a non-existing file in an existing directory:** The file is moved and renamed to the new name.
-   ```bash
+  ```bash
    mv file.txt existing_dir/newfile.txt    # file.txt is moved to existing_dir/ and renamed to newfile.txt
-   ```
-
+  ```
 3. **If the destination is a path to an existing file:** The source file overwrites the destination file (the original destination file is replaced).
-   ```bash
+  ```bash
    mv file.txt existing_file.txt    # file.txt replaces existing_file.txt (existing_file.txt is lost)
-   ```
+  ```
+
+
 
 ## Pipe one command into another using the `|` character.
 
@@ -391,6 +408,7 @@ This will print three numbers:
 ```
   171   812  4522
 ```
+
 This means the file is 171 lines long, contains 812 words, and is 4522 characters long.
 
 You can always request one of these values at a time by using option flags with the `wc` command. If you would like a line count only, use `-l`:
@@ -398,11 +416,14 @@ You can always request one of these values at a time by using option flags with 
 ```bash
 cat hello | wc -l
 ```
+
 For a word count only, use `-w`
 
 ```bash
 cat hello | wc -w
 ```
+
+
 
 ## Inspecting and Searching File Content
 
@@ -414,21 +435,25 @@ Let's fetch a large text file from a remote source so that we can search through
 ```bash
 curl https://gist.githubusercontent.com/StevenClontz/4445774/raw/1722a289b665d940495645a5eaaad4da8e3ad4c7/mobydick.txt > mobydick.txt
 ```
+
 You should now have a local file named `mobydick.txt`. Let's search through it using
 `grep`, which we will pipe after a `cat` command. `cat` will echo out the text contents into
 `grep` which will filter and print ONLY lines where the search term appears.
 
 Take a look at the top 20 lines with
+
 ```bash
 head -20 mobydick.txt 
 ```
 
 Or the last 15 lines with
+
 ```bash
 tail -15 mobydick.txt 
 ```
 
 Let's find the `Captain`:
+
 ```bash
 cat mobydick.txt | grep "Captain"
 ```
@@ -479,6 +504,8 @@ To search across all home directories, for example, you would change the path op
 find /home -name "filename.txt"
 ```
 
+
+
 ### Find files matching a pattern
 
 Use the wildcard `*` character at the beginning, middle, or end of a term to extend
@@ -496,14 +523,18 @@ find . -name '*.txt'
 ```
 
 Search for *directories* that contain "2026" in their name:
+
 ```bash
 find . -type d -name '*2026*'
 ```
 
 Search for *files* that contain "2026" in their name:
+
 ```bash
 find . -type f -name '*2026*'
 ```
+
+
 
 ### General Use of Wildcards
 
@@ -522,6 +553,8 @@ touch zero.txt zero_file.txt file_zero.txt
 rm *zero*
 ```
 
+
+
 ## File Permissions
 
 1. Touch a file named `permission_test` and echo some content into it:
@@ -529,11 +562,10 @@ rm *zero*
 ```bash
 touch permission_test
 echo "This is a test file" > permission_test
-``` 
+```
 
-2. Next use `ls -al` to see it listed in your directory.
-
-3. Now change its permissions to `000` like this:
+1. Next use `ls -al` to see it listed in your directory.
+2. Now change its permissions to `000` like this:
 
 ```bash
 chmod 000 permission_test
@@ -541,7 +573,7 @@ chmod 000 permission_test
 
 Try to `cat` the contents of the file. You should get a permission denied message.
 
-4. Now change its permissions so that only you can read and write the file:
+1. Now change its permissions so that only you can read and write the file:
 
 ```bash
 chmod 600 permission_test
@@ -549,7 +581,8 @@ chmod 600 permission_test
 
 Again, `ls` the directory so you can see the permission bits for the file.
 
-5. Finally, let's grant other members of your group read access, along with the access
+1. Finally, let's grant other members of your group read access, along with the access
+
 we already gave you:
 
 ```bash
@@ -570,10 +603,9 @@ The next 9 characters represent permissions for the USER (i.e. the owner), GROUP
 
 Each of those entities can have any combination of `rwx` permissions, which stands for READ, WRITE, and EXECUTE. This applies both to files and directories.
 
-So to see `rwxrwxrwx` means the user, group, and other users all have full permissions to read, write, and execute the file/folder. <a href="https://www.redhat.com/en/blog/linux-file-permissions-explained" target="_blank" rel="noopener noreferrer"><strong>Read more here</strong></a> about POSIX permissions.
+So to see `rwxrwxrwx` means the user, group, and other users all have full permissions to read, write, and execute the file/folder. **[Read more here](https://www.redhat.com/en/blog/linux-file-permissions-explained)** about POSIX permissions.
 
 As practice, you should now determine what command is required to allow the USER and GROUP read/write permissions to a file, but no access to OTHER users.
-
 
 ## Utility Commands
 
@@ -609,19 +641,20 @@ built-in commands within the Linux kernel and `bash` shell.
 ls -al /usr/bin
 ```
 
+
+
 ### `zip` and `tar`
 
-- - -
+---
 
 **NOTE**: Windows users with `git-bash` have `unzip` available but not `zip`. I suggest you work
 with `tar` instead.
 
-- - -
+---
 
 Compressing or decompressing archives like zips or tarballs is not too difficult:
 
 To create a zip bundle, assuming we are in a directory with `file1` and `file2` we want to zip up:
-
 
 ```bash
 zip archive.zip file1 file2
@@ -648,6 +681,7 @@ To decompress the same archive:
 ```bash
 tar -xzvf archive.tar.gz
 ```
+
 The only difference in options is the use of `-x` which means "expand"
 
 NOTE: It's extremely useful to know that in the world of the command line you can always add or remove files from archives without re-creating them! They are editable objects
@@ -664,6 +698,8 @@ in your history, prefix that number with `!`.
 ```bash
 !35
 ```
+
+
 
 ## Environment `env` variables
 
@@ -706,6 +742,7 @@ For your user account, assuming that `bash` is your default shell, you can edit 
 ```bash
 export FNAME="Waldo"
 ```
+
 Upon your next login, that variable will be available.
 
 If you can become `root` or use the `sudo` command, there is also a system-wide file for these exports. Simply insert your KEY=VALUE environment variable there (no `export` needed). That file can be found at:
@@ -713,6 +750,8 @@ If you can become `root` or use the `sudo` command, there is also a system-wide 
 ```bash
 /etc/environment
 ```
+
+
 
 ## Networking / Internet
 
@@ -742,7 +781,6 @@ Example output:
 199.111.240.7
 ```
 
-
 ```bash
 curl -I https://google.com
 ```
@@ -767,7 +805,9 @@ Press Ctrl+C to stop the `ping`s. Be aware that `ping` just verified two things 
 1. The host `google.com` is alive and well; and
 2. Our current host has an active Internet connection.
 
->Note: Codespace may restrict the ping command from reaching outside servers for security reasons. Use the `curl -I google.com` command instead.
+> Note: Codespace may restrict the ping command from reaching outside servers for security reasons. Use the `curl -I google.com` command instead.
+
+
 
 ### `ssh`
 
