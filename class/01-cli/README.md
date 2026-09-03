@@ -68,7 +68,7 @@ pwd
 
 This prints your current working directory.
 
-List the contents of your home directory with `ls`. If you're in a Codespace, your home directory may appear empty at first.
+List the contents of your home directory with `ls`. If you're in a new environment or account, your home directory may appear empty at first.
 
 ```bash
 ls
@@ -142,12 +142,6 @@ You can also use it to add text to a file:
 
 ```bash
 echo "Hi there everybody, my name is <YOUR NAME>" > file1
-```
-
-If you're in a GitHub Codespace, you can try:
-
-```bash
-echo "I'm in the cloud." > README-cloudshell.txt
 ```
 
 This command uses a redirect (`>`) to send the output of `echo` into `file1`.
@@ -632,7 +626,7 @@ $ which python3
 /usr/bin/python3
 ```
 
-The binary code for Python3 lives within `/usr/bin` - a very normal place for it to be. If you're in Codespace you may see a different location. In such case, replace `/usr/bin` in the next command with the output you've received.
+The binary code for Python3 lives within `/usr/bin`. That's a very normal place for it to be. `python3` may be installed in a different location on your computer and the output may show a different path. That is perfectly fine.
 
 You may want to list the contents of the `/usr/bin` directory to get a sense for all the 
 built-in commands within the Linux kernel and `bash` shell.
@@ -804,9 +798,6 @@ Press Ctrl+C to stop the `ping`s. Be aware that `ping` just verified two things 
 
 1. The host `google.com` is alive and well; and
 2. Our current host has an active Internet connection.
-
-> Note: Codespace may restrict the ping command from reaching outside servers for security reasons. Use the `curl -I google.com` command instead.
-
 
 
 ### `ssh`
