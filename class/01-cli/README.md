@@ -204,10 +204,7 @@ You can change back to your home directory in several ways. From one level above
 ```bash
 cd ~                        # shortcut to home
 cd                          # also returns to home in most shells
-cd "$(whoami)"              # relative path using your username
 ```
-
-The first two options work from anywhere. The third uses a relative path from a parent directory such as `/home` (Linux/WSL) or `/Users` (macOS).
 
 To go back to the last directory you can run `cd -`. Try this:
 
