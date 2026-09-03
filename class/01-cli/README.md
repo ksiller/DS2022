@@ -753,7 +753,7 @@ The Linux OS has several built-in tools for helping check networking, or interac
 `curl` is a basic tool for fetching something from the Internet - a file, web page, zip or tar bundle, CSV or JSON datafile, etc. You used `curl` above to fetch the Moby Dick text. Try it yourself with this list of songs:
 
 ```bash
-curl http://nem2p-dp1-api.pods.uvarc.io/songs
+curl wttr.in
 ```
 
 By default, `curl` displays the contents of what was retrieved. In the case above, you can see the JSON values of a song list. If you wanted to "capture" the data file, you could redirect this command to a file, or use the `-O` flag (Oh, not zero) to save the file.
