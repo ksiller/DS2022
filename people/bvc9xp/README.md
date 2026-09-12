@@ -1,0 +1,4 @@
+- Hometown: Herndon, Virginia
+- Hobbies: Learning about Medieval/Ancient History, Tennis, Soccer, Staring at Maps, Hanging out with Friends 
+- First computer I ever saw: Dell Inspiron 1526
+- About me: Hello! My name is Filip, (obviously) a data science major but I'm planning to double major with Economics. I love playing and watching tennis and soccer, and I'm a HUGE enthusiast about antiquity and the medieval period. 
