@@ -1,0 +1,10 @@
+# Charlie Magruder
+
+![Path to an image](myphoto.jpg)
+
+- Hometown: Bethesda, MD    
+- Hobbies: Fishing, lacrosse, listening to music, and playing videogames 
+- First computer I ever saw: My moms apple desktop
+- About me: I am a double major in Data Science and Econmomics and I love dogs and have two of them at home. I work as a lifeguard at the beach in the summer and love to surf. 
+
+[Need help with Markdown?](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
