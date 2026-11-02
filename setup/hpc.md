@@ -124,7 +124,7 @@ The form should look like this:
 
 After you click `Launch` it may take a few minutes to start up. This is expected as we are sharing the cluster with hundreds of other users.
 
-![](../docs/images/ood-jlab.png)
+![JupyterLab](../docs/images/ood-jlab.png)
 
 - When JupyterLab starts you will see a list of files (if any) in your home directory and a set of tiles for underlying applications (e.g. Python, R, TensorFlow).
 
