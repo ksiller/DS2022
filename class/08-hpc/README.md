@@ -15,7 +15,7 @@ This session introduces the **UVA HPC cluster** (Afton/Rivanna): you log in, fin
 
 **Log in.** Follow [HPC Access](../../setup/hpc.md).
 
-- **ssh** from your terminal: `ssh mst3k@login.hpc.virginia.edu` (replace `mst3k` with your computing ID). Off Grounds, connect to the UVA VPN first.
+- **ssh** from your terminal: `ssh mst3k@login.hpc.virginia.edu` (replace `mst3k` with your computing ID). **The password is your UVA Netbadge password.** Off Grounds, connect to the UVA VPN first.
 - **Open OnDemand** in your browser: [ood.hpc.virginia.edu](https://ood.hpc.virginia.edu), with a shell, a file browser, and VSCode or JupyterLab sessions. It works without the VPN.
 
 Either way, you land on a **login node**, shared with many other users. Edit files, manage software, and submit jobs here; run computations as jobs on the compute nodes.
@@ -68,20 +68,20 @@ See what loading a module does. Run each command on its own, and look at its out
 
 1. Ask for the version of `uv`:
    ```bash
-    uv --version
+     uv --version
    ```
 
-    `uv` is installed on the cluster, but your shell doesn't know where to find it.
+     `uv` is installed on the cluster, but your shell doesn't know where to find it.
 2. Load the `uv` module:
    ```bash
-    module load uv
+     module load uv
    ```
 3. Ask for the version again:
    ```bash
-    uv --version
+     uv --version
    ```
 
-    Now the shell finds `uv` and prints its version.
+     Now the shell finds `uv` and prints its version.
 
 A loaded module lasts only for your current shell. When you log in again, or in a job script, load it again.
 
@@ -99,27 +99,28 @@ If you cloned it before, update it instead: `cd ~/DS2022 && git pull`.
 
 **Interactive Apps** in [Open OnDemand](https://ood.hpc.virginia.edu) start a program such as JupyterLab, VSCode (Code Server), or a Linux desktop on a **compute node**, and show it in your browser. You fill in a form with what the session needs: the allocation `ds2022`, the partition, CPU cores, memory, a GPU if needed, and how many hours. Open OnDemand turns the form into a Slurm job; when the job starts, you connect to it.
 
-1. In the Open OnDemand menu, click **Interactive Apps** → **Code Server** (that's VSCode).
-2. Fill in the form with these values, then click **Launch**. Starting may take a few minutes.
+1. In your web browser, go to https://ood.hpc.virginia.edu. Login via Netbadge with your UVA computing ID and password.
+2. In the Open OnDemand menu, click **Interactive Apps** → **Code Server** (that's VSCode).
+3. Fill in the form with these values, then click **Launch**. Starting may take a few minutes.
    | Field | Value |
-    | --- | --- |
-    | Rivanna/Afton Partition | Interactive |
-    | Number of hours | 2 |
-    | Number of cores | 1 |
-    | Memory Request in GB | 8 |
-    | Allocation | `ds2022` |
-    | Work Directory | HOME |
-    | Optional: GPU for Interactive partition | No |
-    | Optional: Slurm Options | (empty) |
+     | --- | --- |
+     | Rivanna/Afton Partition | Interactive |
+     | Number of hours | 2 |
+     | Number of cores | 1 |
+     | Memory Request in GB | 8 |
+     | Allocation | `ds2022` |
+     | Work Directory | HOME |
+     | Optional: GPU for Interactive partition | No |
+     | Optional: Slurm Options | (empty) |
 
-    ![Open OnDemand form for Code Server](../../docs/images/ood-vscode-request.png)
+     ![Open OnDemand form for Code Server](../../docs/images/ood-vscode-request.png)
 
 > [!NOTE]
 > Many students are trying to start a session at the same time today. If yours does not start, continue with [Part 4: Job examples](#part-4-job-examples) from the command line.
 
-3. When the session is ready, click **Connect to VSCode**.
-4. Open a terminal in VSCode (**Terminal** → **New Terminal**) and run `hostname`: the name is a compute node, not the login node.
-5. When you are done, click **Delete** on the session card in **My Interactive Sessions**. The session holds its cores until its hours run out, even if you close the browser tab.
+4. When the session is ready, click **Connect to VSCode**.
+5. Open a terminal in VSCode (**Terminal** → **New Terminal**) and run `hostname`: the name is a compute node, not the login node.
+6. When you are done, click **Delete** on the session card in **My Interactive Sessions**. The session holds its cores until its hours run out, even if you close the browser tab.
 
 [HPC Access](../../setup/hpc.md#login-via-web-browser) shows the VSCode form, and how to start JupyterLab or a Linux desktop the same way.
 
@@ -143,28 +144,28 @@ Run each command on its own, and look at its output before you run the next one.
 
 1. Submit it:
    ```bash
-    sbatch 01_job.slurm
+     sbatch 01_job.slurm
    ```
 
-    The number is the **job ID**. Yours is different; use it in place of `22492513` in the next steps.
+     The number is the **job ID**. Yours is different; use it in place of `22492513` in the next steps.
 2. Check the queue:
    ```bash
-    squeue --me
+     squeue --me
    ```
 
-    `ST` is the job's state: `PD` pending, `R` running. Run `squeue --me` again every few seconds. When the job is no longer listed, it has finished.
+     `ST` is the job's state: `PD` pending, `R` running. Run `squeue --me` again every few seconds. When the job is no longer listed, it has finished.
 3. Check how the job ended:
    ```bash
-    sacct -X --format=JobID,JobName,Partition,NodeList,AllocCPUS,Start,Elapsed,End,State%20,ExitCode
+     sacct -X --format=JobID,JobName,Partition,NodeList,AllocCPUS,Start,Elapsed,End,State%20,ExitCode
    ```
 
-    `squeue` shows only jobs that wait or run; `sacct` also shows finished ones: all your jobs since midnight. Find this one by its job ID. `sacct` shows on which partition and compute node (`NodeList`) the job ran, how many CPU cores it got (`AllocCPUS`), when it started and ended, and how long it ran (`Elapsed`). A `+` at the end of a value means that it was cut off to fit the column: `interacti+` is `interactive`. `-X` shows one line per job, without the job's steps, and `State%20` widens the `State` column to 20 characters. `COMPLETED` with exit code `0:0` means the job ran without errors; `FAILED` or `TIMEOUT` means it did not, and `CANCELLED` means that you, or an administrator, cancelled it with `scancel` (below).
+     `squeue` shows only jobs that wait or run; `sacct` also shows finished ones: all your jobs since midnight. Find this one by its job ID. `sacct` shows on which partition and compute node (`NodeList`) the job ran, how many CPU cores it got (`AllocCPUS`), when it started and ended, and how long it ran (`Elapsed`). A `+` at the end of a value means that it was cut off to fit the column: `interacti+` is `interactive`. `-X` shows one line per job, without the job's steps, and `State%20` widens the `State` column to 20 characters. `COMPLETED` with exit code `0:0` means the job ran without errors; `FAILED` or `TIMEOUT` means it did not, and `CANCELLED` means that you, or an administrator, cancelled it with `scancel` (below).
 4. Read its log file. **Replace** `22492513` with your job ID:
    ```bash
-    cat hello-22492513.out
+     cat hello-22492513.out
    ```
 
-    The `--output=hello-%j.out` directive in `01_job.slurm` named the file: Slurm replaces `%j` with the job ID. Everything the job prints goes into this file, including error messages.
+     The `--output=hello-%j.out` directive in `01_job.slurm` named the file: Slurm replaces `%j` with the job ID. Everything the job prints goes into this file, including error messages.
 
 Then do the same for `02_job_array.slurm` and `03_gpu.slurm`. The job array writes one output file per task: list them with `ls hello-array-*`.
 
@@ -174,32 +175,32 @@ The `#SBATCH` directives at the top of each script define the job's resource req
 
 1. Submit the job with a delayed start:
    ```bash
-    sbatch --begin=now+10minutes 01_job.slurm
+     sbatch --begin=now+10minutes 01_job.slurm
    ```
 2. Check the queue:
    ```bash
-    squeue --me
+     squeue --me
    ```
 
-    The reason `(BeginTime)` means that the job waits for its start time.
+     The reason `(BeginTime)` means that the job waits for its start time.
 3. Cancel it. **Replace** `22492577` with your job ID:
    ```bash
-    scancel 22492577
+     scancel 22492577
    ```
 
-    `scancel` prints nothing when it succeeds.
+     `scancel` prints nothing when it succeeds.
 4. Check the queue again:
    ```bash
-    squeue --me
+     squeue --me
    ```
 
-    The job is gone.
+     The job is gone.
 5. Check how it ended:
    ```bash
-    sacct -X --format=JobID,JobName,Partition,NodeList,AllocCPUS,Start,Elapsed,End,State%20,ExitCode
+     sacct -X --format=JobID,JobName,Partition,NodeList,AllocCPUS,Start,Elapsed,End,State%20,ExitCode
    ```
 
-    The state is `CANCELLED`, followed by the numeric user ID of whoever cancelled the job: you; without `State%20`, `sacct` cuts it off to `CANCELLED+`. The job never started: it got no compute node (`NodeList` is `None assigned`) and no CPU cores (`AllocCPUS` is `0`), ran for `00:00:00`, and wrote no log file.
+     The state is `CANCELLED`, followed by the numeric user ID of whoever cancelled the job: you; without `State%20`, `sacct` cuts it off to `CANCELLED+`. The job never started: it got no compute node (`NodeList` is `None assigned`) and no CPU cores (`AllocCPUS` is `0`), ran for `00:00:00`, and wrote no log file.
 
 `scancel --me` cancels all your jobs at once; use it with care.
 
