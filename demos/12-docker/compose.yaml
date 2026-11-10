@@ -1,0 +1,13 @@
+services:
+  web:
+    image: nginx
+    ports:
+      - "8000:80"
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - db-data:/var/lib/postgresql/data
+volumes:
+  db-data:
