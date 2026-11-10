@@ -14,9 +14,28 @@ Files in this folder:
 
 Setup: [GENERAL.md](../../setup/GENERAL.md) (Rancher Desktop with the `dockerd (moby)` engine) and [AI-Installation.md](../../setup/AI-Installation.md). Mac: Terminal. Windows: Ubuntu (WSL).
 
+### Set up
+
+Create a working folder for this activity (`-p` also creates `~/ds2022-fall-2026` if needed):
+```bash
+mkdir -p ~/ds2022-fall-2026/containers
+```
+
+Change into it:
+```bash
+cd ~/ds2022-fall-2026/containers
+```
+
+Download the demo files from the course repo into this folder (`-O` keeps each file's name):
+```bash
+curl -O https://raw.githubusercontent.com/ksiller/DS2022/main/demos/12-docker/Dockerfile
+curl -O https://raw.githubusercontent.com/ksiller/DS2022/main/demos/12-docker/script.sh
+curl -O https://raw.githubusercontent.com/ksiller/DS2022/main/demos/12-docker/compose.yaml
+```
+
 ### Check Docker
 
-Log in to Docker Hub (only needed to push images):
+Log in to Docker Hub (skip today; only needed to push images):
 ```bash
 docker login
 ```
@@ -52,7 +71,7 @@ Leave it running; we clean up at the end.
 
 ### Build your own image (in terminal)
 
-Build an image using the `Dockerfile` and `script.sh` in this folder (indicated by trailing `.`; don't leave that out):
+In `~/ds2022-fall-2026/containers`, build an image from `Dockerfile` and `script.sh` (the trailing `.` means this folder; don't leave it out):
 ```bash
 docker build -t my_image:1.0.0 .
 ```
@@ -138,7 +157,7 @@ docker ps -a
 
 ### Docker Compose
 
-In this folder, start the containers described in `compose.yaml` in the background (-d means detached):
+In `~/ds2022-fall-2026/containers`, start the containers described in `compose.yaml` in the background (-d means detached):
 ```bash
 docker compose up -d
 ```
@@ -170,7 +189,7 @@ Delete its container:
 docker rm smol-llm2
 ```
 
-In this folder, delete the Compose containers and their `db-data` volume (`-v`):
+In `~/ds2022-fall-2026/containers`, delete the Compose containers and their `db-data` volume (`-v`):
 ```bash
 docker compose down -v
 ```
