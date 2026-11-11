@@ -24,7 +24,7 @@ Complete the following steps before the end of week 1. Visit office hours if you
   3. Open Terminal and run `docker login`. Follow the browser/device-code flow, or enter your Docker Hub username and password when prompted.
   4. Confirm the login worked: `docker info` should run without errors.
 
-  You will not need `docker login` for every lab, but your Docker account must exist and this step verifies that Rancher Desktop and the Docker CLI are working.
+  You will not need `docker login` for every lab, but your Docker account must exist and this step verifies that Rancher Desktop and the Docker CLI are working. If `docker` does not work, see [Troubleshooting Docker setup](Troubleshooting-Docker-Setup.md). Windows laptops with an ARM processor (Snapdragon): Rancher Desktop has no Windows ARM build. That page says to install Docker Desktop instead.
 - [ ] Install the `git` **[command line](https://git-scm.com/downloads)** for your OS. Windows users may want to install it both in Windows and within WSL. 
 - [ ] Install [`jq`](https://jqlang.github.io/jq/) for your OS. Confirm it works with `jq --version`.
   - MacOS users: install with [Homebrew](https://brew.sh/):

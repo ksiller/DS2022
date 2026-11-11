@@ -412,7 +412,7 @@ Finish the [WSL installation](https://learn.microsoft.com/en-us/windows/wsl/inst
 
 ### `docker: command not found` after installing Rancher Desktop
 
-Make sure Rancher Desktop is **running** (it lives in your menu bar / system tray) and that the container runtime is set to **dockerd (moby)** in *Preferences → Container Engine*. On Windows, also enable WSL integration for your Ubuntu distro in *Preferences → WSL* (see below). Then open a **new** terminal.
+Make sure Rancher Desktop is **running** (it lives in your menu bar / system tray) and that the container runtime is set to **dockerd (moby)** in *Preferences → Container Engine*. On Windows, also enable WSL integration for your Ubuntu distro in *Preferences → WSL* (see below). Then open a **new** terminal. If it still fails, or this is a Windows laptop with an ARM processor, see [Troubleshooting Docker setup](Troubleshooting-Docker-Setup.md).
 
 ![Rancher Desktop preferences on Windows showing the WSL tab and dockerd (moby)](https://suse-rancher-media.s3.amazonaws.com/desktop/v1.24/preferences/Windows_containerEngine_tabGeneral.png)
 
