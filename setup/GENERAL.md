@@ -21,8 +21,9 @@ Complete the following steps before the end of week 1. Visit office hours if you
 - [ ] Install **[Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation/)** on your laptop. Rancher Desktop does not have a sign-in screen like Docker Desktop; you connect your Docker account from the terminal after setup.
   1. Install and open Rancher Desktop. Let it finish its first-time setup.
   2. Open **Preferences** → **Container Engine** and select **Moby (dockerd)** as the container runtime.
-  3. Open Terminal and run `docker login`. Follow the browser/device-code flow, or enter your Docker Hub username and password when prompted.
-  4. Confirm the login worked: `docker info` should run without errors.
+  3. Windows users: open **Preferences** → **WSL** → **Integrations** and check **Ubuntu**. Click **Apply**. This is what makes the `docker` command work inside Ubuntu. Mac users skip this step.
+  4. Open a terminal and run `docker login`. Follow the browser/device-code flow, or enter your Docker Hub username and password when prompted. Windows users: do this in the **Ubuntu** terminal, not PowerShell. If Ubuntu was already open, close it and open a new one.
+  5. Confirm the login worked: `docker info` should run without errors.
 
   You will not need `docker login` for every lab, but your Docker account must exist and this step verifies that Rancher Desktop and the Docker CLI are working. If `docker` does not work, see [Troubleshooting Docker setup](Troubleshooting-Docker-Setup.md). Windows laptops with an ARM processor (Snapdragon): Rancher Desktop has no Windows ARM build. That page says to install Docker Desktop instead.
 - [ ] Install the `git` **[command line](https://git-scm.com/downloads)** for your OS. Windows users may want to install it both in Windows and within WSL. 
