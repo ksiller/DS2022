@@ -112,6 +112,14 @@ git push origin main
 
 If Git reports a merge conflict, ask in class or office hours before forcing anything.
 
+**With Claude Code.** You can also let [Claude Code](setup/claude-cursor-vscode.md) do the weekly sync. Start it in your local `DS2022` folder, switch to **Plan** mode, and paste this prompt:
+
+```text
+Check this repo's upstream. If it is not defined, set it to the ksiller/DS2022 GitHub repo. Commit all my local changes; I don't need to see a diff. Then use pull (not fetch) from the upstream main branch and merge it into my local main branch. Show me the commands you would run, but don't execute them.
+```
+
+Read the commands it shows you, and check them against the steps above, before you let it run them.
+
 ### Push your work to GitHub
 
 When you add your own notes or files and want them on your fork:
