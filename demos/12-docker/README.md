@@ -35,11 +35,6 @@ curl -O https://raw.githubusercontent.com/ksiller/DS2022/main/demos/12-docker/co
 
 ### Check Docker
 
-Log in to Docker Hub (skip today; only needed to push images):
-```bash
-docker login
-```
-
 Check that Docker is running:
 ```bash
 docker info
@@ -81,14 +76,14 @@ Start a container from your image; it runs the image's default command:
 docker run my_image:1.0.0
 ```
 
-### Optional: push to Docker Hub
+### Optional: push to the GitHub Container Registry
 
-Log in first (`docker login`, see above). Give the image a name that includes your account (replace `my_repo` with your Docker Hub username), then upload it:
+Pushing needs a GitHub token and `docker login ghcr.io`: see [class 09, Part 3](../../class/09-containers/README.md#tag-and-push-to-the-github-container-registry). Give the image its full name on `ghcr.io` (replace `github-user` with your GitHub user name, in lowercase), then upload it:
 ```bash
-docker tag my_image:1.0.0 my_repo/my_image:1.0.0
+docker tag my_image:1.0.0 ghcr.io/github-user/my_image:1.0.0
 ```
 ```bash
-docker push my_repo/my_image:1.0.0
+docker push ghcr.io/github-user/my_image:1.0.0
 ```
 (If this fails, don't worry about it. Just move on, we can troubleshoot later.)
 
@@ -199,7 +194,7 @@ List your images:
 docker images
 ```
 
-Delete the demo images (if you pushed, also delete `my_repo/my_image:1.0.0`):
+Delete the demo images (if you pushed, also delete `ghcr.io/github-user/my_image:1.0.0`):
 ```bash
 docker rmi my_image:1.0.0 ghcr.io/ggml-org/llama.cpp:server nginx ubuntu postgres:17
 ```
