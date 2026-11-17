@@ -1,4 +1,4 @@
-# APIs
+# Build an API with FastAPI
 
 An **API** (application programming interface) is a way for one program to request data or an action from another. In this exercise, the other program is a small web server you run on your own computer with [FastAPI](https://fastapi.tiangolo.com). A client (your browser, the `curl` command, or another script) sends an HTTP request to a URL. A Python function handles that request and returns a dictionary. FastAPI converts the dictionary to JSON and sends it back.
 
@@ -9,8 +9,8 @@ This API runs on your computer. In Lab 10, you will develop an API with Chalice,
 ## Step 1: Setup
 
 ```bash
-mkdir -p ~/ds2022-fall-2026/api
-cd ~/ds2022-fall-2026/api
+mkdir -p ~/ds2022-fall-2026/
+cd ~/ds2022-fall-2026/
 uv init my_api
 cd my_api
 ```
@@ -21,10 +21,9 @@ Add the `fastapi` package.
 uv add "fastapi[standard]"
 ```
 
-
 ## Step 2: Create an API
 
-`uv init` already created `main.py`. Replace its contents with:
+Create the file `src/main.py` with the contents below. If your project has no `src` folder, run `mkdir -p src` first.
 
 ```python
 from fastapi import FastAPI, HTTPException
@@ -67,13 +66,13 @@ def get_book(book_id: int):
 |---|---|---|
 | `@app.get()` | GET | Retrieve books |
 | `@app.post()` | POST | Add a new book |
-| `@app.put()` | PUT | Update a book |
+| `@app.put()` | PUT | Replace a book |
 | `@app.delete()` | DELETE | Delete a book |
 
 ## Step 3: Start the API
 
 ```bash
-uv run fastapi dev main.py
+uv run fastapi dev src/main.py
 ```
 
 This starts your FastAPI server, typically at http://127.0.0.1:8000. Your address and port may differ. Use the URL printed in the server output for the commands below. Leave this terminal running.
@@ -96,7 +95,7 @@ Response:
 
 **B. Retrieve all books**
 
-The route in `main.py` is `/books`, with no slash after `books`. **Do not add a trailing `/`.** `/books/` is a different path. FastAPI answers it with a redirect and an empty body, and `curl` does not follow that redirect, so the command prints nothing.
+The route in `src/main.py` is `/books`, with no slash after `books`. **Do not add a trailing `/`.** `/books/` is a different path. FastAPI answers it with a redirect and an empty body, and `curl` does not follow that redirect, so the command prints nothing.
 
 ```bash
 curl http://127.0.0.1:8000/books
@@ -140,7 +139,7 @@ Try these three:
 
 ## Step 6: Add a book
 
-Leave the server from Step 3 running. `fastapi dev` reloads `main.py` when the file is saved.
+Leave the server from Step 3 running. `fastapi dev` reloads `src/main.py` when the file is saved.
 
 Do **one** of the two options. Both add a POST `/books` endpoint: the client sends a book as JSON, the function stores it, and the response includes a new id. If this is the first book you add, that id is `4`.
 
@@ -153,7 +152,7 @@ In the `curl` commands below, `-X POST` sets the method, `-H` sets the header so
 If `claude` is not installed yet, follow [Claude Code setup](../../setup/claude-cursor-vscode.md). Start Claude Code in the project folder:
 
 ```bash
-cd ~/ds2022-fall-2026/api/my_api
+cd ~/ds2022-fall-2026/my_api
 claude
 ```
 
@@ -162,15 +161,15 @@ The first time in this folder, Claude Code asks whether to trust this folder. Ch
 Paste this prompt and press Return:
 
 ```text
-Add a POST endpoint to main.py that lets a client add a new book. Store the book in the books dictionary and return it with a new id.
+Add a POST endpoint to src/main.py that lets a client add a new book. Store the book in the books dictionary and return it with a new id.
 ```
 
-Claude shows the edit and asks before it writes the file. Approve the change to `main.py`.
+Claude shows the edit and asks before it writes the file. Approve the change to `src/main.py`.
 
 At the Claude prompt, `!` runs a shell command and shows you the output. Print the file:
 
 ```text
-! cat main.py
+! cat src/main.py
 ```
 
 Look for a new POST route, `@app.post("/books")`. The details may differ. A typical version defines the two fields with a Pydantic model and returns status `201` (Created):
@@ -215,7 +214,7 @@ Response:
 
 ### 6B. Write the endpoint yourself
 
-Open `main.py`, add this function at the end, and save. You do not need a new import. `status_code=201` tells FastAPI to answer with `201 Created`.
+Open `src/main.py`, add this function at the end, and save. You do not need a new import. `status_code=201` tells FastAPI to answer with `201 Created`.
 
 ```python
 @app.post("/books", status_code=201)
@@ -234,13 +233,13 @@ Wait until the server terminal shows that it reloaded. In the second terminal:
 ```bash
 curl -X POST http://127.0.0.1:8000/books \
   -H "Content-Type: application/json" \
-  -d '{"title": "Little Women", "author": "Louisa May Alcott"}'
+  -d '{"title": "To Kill a Mockingbird", "author": "Harper Lee"}'
 ```
 
 Response:
 
 ```text
-{"id":4,"title":"Little Women","author":"Louisa May Alcott"}
+{"id":4,"title":"To Kill a Mockingbird","author":"Harper Lee"}
 ```
 
 ### Check the new book
@@ -251,7 +250,7 @@ Whichever option you used, list the books:
 curl http://127.0.0.1:8000/books
 ```
 
-The new book is in the list. Its key is a string, `"4"`, as in Step 4B. The dictionary lives only in memory. Stopping the server drops any book you added. The three books written in `main.py` are there again the next time you start the server.
+The new book is in the list. Its key is a string, `"4"`, as in Step 4B. The dictionary lives only in memory. Stopping the server drops any book you added. The three books written in `src/main.py` are there again the next time you start the server.
 
 After the reload, **POST /books** also appears at http://127.0.0.1:8000/docs. Click **Try it out** on that row to send the same JSON from the browser.
 
@@ -264,5 +263,3 @@ After the reload, **POST /books** also appears at http://127.0.0.1:8000/docs. Cl
 - [FastAPI homepage](https://fastapi.tiangolo.com)
 - [FastAPI Example](https://fastapi.tiangolo.com/#example)
 - [Interactive API docs with Swagger](https://fastapi.tiangolo.com/#interactive-api-docs)
-
-
